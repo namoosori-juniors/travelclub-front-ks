@@ -36,6 +36,25 @@ export class TravelClubService{
   }
 
   @action
+  async modifyClub(){
+    const keyValueList = [];
+    const clubId = this.travelClub?this.travelClub.usid:'';
+
+    if(this.travelClub){
+      keyValueList.push({name:'name',value:this.travelClub.name}) ;
+      keyValueList.push({name:'intro',value:this.travelClub.intro}) ;
+    }
+
+    await travelClubApi.modifyClub(clubId, {nameValueList:keyValueList});
+  }
+
+  @action
+  async removeClub(){
+    await travelClubApi.removeClub(this.travelClub?this.travelClub.usid:'');
+  }
+
+
+  @action
   setTravelClub(travelClub : TravelClubModel){
     if(travelClub) this.travelClub = travelClub;
   }

@@ -1,7 +1,6 @@
 import * as React from "react";
 import TravelClubModel from "../../model/TravelClubModel";
-import {Button, Container, Input,Modal,Header,Icon} from "semantic-ui-react";
-import travelClubService from "../../present/logic/travelClubService";
+import {Button, Input,Modal,Header,Icon} from "semantic-ui-react";
 
 interface Props{
   clubs : TravelClubModel[];

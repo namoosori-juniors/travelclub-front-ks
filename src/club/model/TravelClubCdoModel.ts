@@ -1,4 +1,3 @@
-import ClubMembership from "./ClubMembership";
 import autobind from 'autobind-decorator';
 
 @autobind

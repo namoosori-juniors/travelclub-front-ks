@@ -31,6 +31,22 @@ class TravelClubApi{
     return axios.post<TravelClubModel>(this.URL ,travelClubCdo)
         .then(response => response && response.data);
   }
+
+  modifyClub(clubId:string, nameValueList:any){
+    if(!clubId) return null;
+    console.log("LOG - API INVOED   ")
+
+    return axios.put<string>(this.URL +`/${clubId}`,nameValueList)
+        .then(response => response && response.data);
+  }
+
+  removeClub(clubId:string){
+    if(!clubId) return null;
+    console.log("LOG - API INVOED   ")
+
+    return axios.delete<void>(this.URL +`/${clubId}`)
+        .then(response => response && response.data);
+  }
   
 }
 

@@ -1,18 +1,29 @@
 import * as React from "react";
 import TravelClubModel from "../../model/TravelClubModel";
-import {Button, Container, Header, Icon, Input, Modal} from "semantic-ui-react";
-import travelClubService from "../../present/logic/travelClubService";
+import {Button} from "semantic-ui-react";
 
 interface Props {
   club : TravelClubModel|any;
   updateTravelClub(key:string, value:string):boolean;
-  modifyTravelClub(key:string, value:string):void;
+  modifyTravelClub():void;
+  removeTravelClub():void;
+}
+interface State {
+    modNameFlag:boolean;
+    modIntroFlag:boolean;
 }
 
-class ClubDetailView extends React.Component<Props> {
+class ClubDetailView extends React.Component<Props, State> {
+
+    constructor(props:Props) {
+        super(props);
+        this.state = {modNameFlag:false, modIntroFlag:false}
+    }
+
   render(){
-    //    
-    const {club,updateTravelClub,modifyTravelClub} = this.props;
+    //
+    //   console.log(this.props.)
+    const {club,updateTravelClub,modifyTravelClub,removeTravelClub} = this.props;
     const membershipList =   club.membershipList ? club.membershipList : [];
     console.log("In View")
       console.log(membershipList);
@@ -28,15 +39,56 @@ class ClubDetailView extends React.Component<Props> {
         )
     }
 
+    const modNameInput:any = [];
+    if(this.state.modNameFlag){
+        modNameInput.push(
+            <input type='text' onChange={e => {
+                console.log(e.currentTarget.value);
+                updateTravelClub('name',e.currentTarget.value);
+            }
+            } placeholder={club.name? club.name:'이름입력'}  />
+        );
+    }else{
+        modNameInput.push(
+            club.name? club.name:'none'
+        )
+    }
+      const modIntroInput:any = [];
+      if(this.state.modIntroFlag){
+          modIntroInput.push(
+              <textarea onChange={e => {
+                  console.log(e.currentTarget.value);
+                  updateTravelClub('intro',e.currentTarget.value);
+              }
+              } placeholder={club.intro? club.intro:'소개입력'}  />
+          );
+      }else{
+          modIntroInput.push(
+              club.intro? club.intro:'none'
+          )
+      }
+
+
+
     return (
       <div className='text-center margin-center wid-80'>
         <div className='text-center margin-center wid-100'>
           <div className='text-center wid-50 dp-inline-block'>
-              <small>클럽이름</small>  <a id='modName' onClick={()=>{
-                const modal = document.getElementById('nameMod');
-                if(modal instanceof Modal) modal.setState({open:true});
-          }}>수정</a>
-              <div className="height-50">{club.name?club.name:'없음'}</div>
+              <small>클럽이름</small>  <button id='modName' onClick={()=>{
+                  if(this.state.modNameFlag){
+                      this.setState({modNameFlag:false, modIntroFlag:this.state.modIntroFlag});
+                      // @ts-ignore
+                      document.getElementById('modName').innerHTML='수정';
+                      modifyTravelClub();
+
+                  }else{
+                      this.setState({modNameFlag:true, modIntroFlag:this.state.modIntroFlag});
+                      // @ts-ignore
+                      document.getElementById('modName').innerHTML='저장';
+                  }
+          }}>수정</button>
+
+              <div className="height-50" id='nameContainer'>{modNameInput}</div>
           </div>
           <div className='text-center wid-30 dp-inline-block'>
               <small>창단일</small>
@@ -48,8 +100,19 @@ class ClubDetailView extends React.Component<Props> {
             </div>
         </div>
         <div className='text-center margin-center wid-100  height-100'>
-            <small>클럽소개</small> <a>수정</a>
-            <div>{club.intro}</div>
+            <small>클럽소개</small> <button id='modIntro' onClick={()=>{
+            if(this.state.modIntroFlag){
+                this.setState({modNameFlag:this.state.modNameFlag, modIntroFlag:false});
+                // @ts-ignore
+                document.getElementById('modIntro').innerHTML='수정';
+                modifyTravelClub();
+            }else{
+                this.setState({modNameFlag:this.state.modNameFlag, modIntroFlag:true});
+                // @ts-ignore
+                document.getElementById('modIntro').innerHTML='저장';
+            }
+        }}>수정</button>
+            <div>{modIntroInput}</div>
         </div>
         <div className='text-center margin-center wid-100  height-500'>
 
@@ -60,57 +123,26 @@ class ClubDetailView extends React.Component<Props> {
                         <th>아이디</th><th>가입일</th><th>Role</th>
                     </tr>
                 </thead>
-                {list}
+                <tbody>
+                    {list}
+                </tbody>
+
             </table>
         </div>
           <div className='text-center margin-center wid-100'>
               <fieldset>
                   <legend>Danger Zone</legend>
-                  <Button>클럽 삭제</Button>
+                  <Button onClick={e=>{
+                      removeTravelClub();
+                  }}>클럽 삭제</Button>
               </fieldset>
           </div>
-
-
-          <Modal id='nameMod' trigger={document.getElementById('modName')} basic size="small">
-              <Header icon="archive" content="클럽 등록하기" />
-              <Modal.Content>
-                  <form id='regForm' className='text-center'>
-                      <Input className='wid-80 gap dp-block' placeholder='클럽이름(10글자 이하)'
-                             onChange={e =>{
-                                 // if(!updateTravelClubCdo('name', e.currentTarget.value)){
-                                 //     e.currentTarget.value=e.currentTarget.value.substring(0,10);
-                                 // }
-                             }}></Input>
-                      <Input className='wid-80 gap dp-block' placeholder='소개글(10글자 이상)'
-                             onChange={e => {
-                                 // if(!updateTravelClubCdo('intro', e.currentTarget.value)){
-                                 //     e.currentTarget.style.color='red';
-                                 // }else{
-                                 //     e.currentTarget.style.color='green';
-                                 // }
-                             }}></Input>
-                      <Input className='wid-80 gap dp-block' placeholder='단장 이메일'
-                             onChange={e=>{
-                                 // updateTravelClubCdo('presidentEmail', e.currentTarget.value);
-                             }}></Input>
-                  </form>
-              </Modal.Content>
-              <Modal.Actions>
-                  <div className='text-center'>
-                      <Button color="green" inverted onClick={e => {
-                          // registerClub();
-                      }}>
-                          <Icon name="checkmark" /> 등록하기
-                      </Button>
-                  </div>
-              </Modal.Actions>
-          </Modal>
       </div>
   );
 
   }
-
-
 }
+
+
 
 export default ClubDetailView;

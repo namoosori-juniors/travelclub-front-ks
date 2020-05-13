@@ -5,7 +5,6 @@ import {RouteComponentProps} from 'react-router';
 import {TravelClubService} from '../../present/logic/travelClubService';
 import ClubDetailView from "../view/ClubDetailView";
 import TravelClubModel from "../../model/TravelClubModel";
-import TravelClubCdoModel from "../../model/TravelClubCdoModel";
 
 interface Props extends RouteComponentProps{
   travelClubService : TravelClubService
@@ -15,10 +14,6 @@ interface Props extends RouteComponentProps{
 @observer
 @autobind
 class TravelClubDetailContainer extends React.Component<Props> {
-
-  constructor(props:Props){
-      super(props);
-  }
 
   updateTravelClub(key:string, value:string){
     const targetClub = this.props.travelClubService.travelClub?this.props.travelClubService.travelClub:new TravelClubModel(null);
@@ -37,6 +32,14 @@ class TravelClubDetailContainer extends React.Component<Props> {
 
   }
 
+  modifyTravelClub(){
+    this.props.travelClubService.modifyClub();
+  }
+
+  removeTravelClub(){
+    this.props.travelClubService.removeClub();
+    this.props.history.push('/');
+  }
 
   render(){
 
@@ -46,7 +49,8 @@ class TravelClubDetailContainer extends React.Component<Props> {
     return(
       <ClubDetailView club = {travelClub}
                       updateTravelClub={this.updateTravelClub}
-                      modifyTravelClub={this.updateTravelClub}
+                      modifyTravelClub={this.modifyTravelClub}
+                      removeTravelClub={this.removeTravelClub}
       />
     );
   }
