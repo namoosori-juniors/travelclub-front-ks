@@ -1,0 +1,49 @@
+.text-center {
+    text-align: center;
+}
+
+.wid-100{
+    width: 100%;
+}
+
+.wid-80{
+    width: 80%;
+}
+.wid-50{
+    width: 50%;
+}
+
+.wid-30{
+    width: 30%;
+}
+
+.wid-20{
+    width: 20%;
+}
+.height-500{
+    height: 500px;
+}
+.height-100{
+    height: 100px;
+}
+.height-50{
+    height: 50px;
+}
+
+.dp-inline-block{
+    display: inline-block;
+}
+.dp-block{
+    display: block;
+}
+
+
+.margin-center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gap{
+    margin-top: 10px;
+}
+
