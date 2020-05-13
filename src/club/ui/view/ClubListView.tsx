@@ -7,17 +7,11 @@ interface Props{
   clubs : TravelClubModel[];
   onKeyUpSearch(clubName:string): void;
   showClubDetail(clubId:string): void;
-  registerClub(frmData:HTMLElement|null): void;
+  registerClub(): void;
   updateTravelClubCdo(key:string, value:string):boolean;
 }
 
 class ClubListView extends React.Component<Props> {
-
-    getNodeById(id:string){
-        const targetDomEl = document.getElementById(id);
-
-        return targetDomEl;
-    }
 
   render(){
     //    
@@ -67,12 +61,17 @@ class ClubListView extends React.Component<Props> {
                                       e.currentTarget.style.color='green';
                                   }
                               }}></Input>
-                      <Input className='wid-80 gap dp-block' placeholder='단장 이메일'></Input>
+                      <Input className='wid-80 gap dp-block' placeholder='단장 이메일'
+                             onChange={e=>{
+                                 updateTravelClubCdo('presidentEmail', e.currentTarget.value);
+                             }}></Input>
                   </form>
               </Modal.Content>
               <Modal.Actions>
                   <div className='text-center'>
-                      <Button color="green" inverted onClick={e => registerClub(this.getNodeById('regForm'))}>
+                      <Button color="green" inverted onClick={e => {
+                          registerClub();
+                      }}>
                           <Icon name="checkmark" /> 등록하기
                       </Button>
                   </div>

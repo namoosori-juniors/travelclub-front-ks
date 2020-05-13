@@ -55,17 +55,9 @@ class TravelClubListContainer extends React.Component<Props> {
 
   }
 
-  registerClub(frmData:HTMLElement){
-    console.log(frmData)
-    console.log(frmData.dataset)
-    console.log(frmData.children[0].children[0].nodeValue)
-      for(const dom of frmData.children){
-        console.log(dom.attributes)
-      }
-    if(frmData instanceof HTMLFormElement){
-      const data = new FormData(frmData);
-      console.log(data)
-    }
+  registerClub(){
+    this.props.travelClubService.registerClub();
+    this.props.history.push('/');
   }
 
   render(){

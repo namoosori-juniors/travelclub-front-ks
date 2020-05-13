@@ -5,6 +5,7 @@ import {RouteComponentProps} from 'react-router';
 import {TravelClubService} from '../../present/logic/travelClubService';
 import ClubDetailView from "../view/ClubDetailView";
 import TravelClubModel from "../../model/TravelClubModel";
+import TravelClubCdoModel from "../../model/TravelClubCdoModel";
 
 interface Props extends RouteComponentProps{
   travelClubService : TravelClubService
@@ -19,10 +20,22 @@ class TravelClubDetailContainer extends React.Component<Props> {
       super(props);
   }
 
-  // showClubDetail(clubId:string){
-  //   this.props.travelClubService.findClubById(clubId);
-  //
-  // }
+  updateTravelClub(key:string, value:string){
+    const targetClub = this.props.travelClubService.travelClub?this.props.travelClubService.travelClub:new TravelClubModel(null);
+    switch (key) {
+      case 'name':
+        if(value.length >10) return false;
+        targetClub.name = value;
+        break;
+      case 'intro' :
+        if(value.length <10) return false;
+        targetClub.intro = value;
+        break;
+    }
+    this.props.travelClubService.setTravelClub(targetClub);
+    return true;
+
+  }
 
 
   render(){
@@ -31,7 +44,10 @@ class TravelClubDetailContainer extends React.Component<Props> {
     console.log("In detail")
     console.log(travelClub)
     return(
-      <ClubDetailView club = {travelClub} />
+      <ClubDetailView club = {travelClub}
+                      updateTravelClub={this.updateTravelClub}
+                      modifyTravelClub={this.updateTravelClub}
+      />
     );
   }
 }

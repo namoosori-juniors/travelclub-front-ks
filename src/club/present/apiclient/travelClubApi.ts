@@ -1,9 +1,11 @@
 import axios from "axios";
 import TravelClubModel from "../../model/TravelClubModel";
+import TravelClubCdoModel from "../../model/TravelClubCdoModel";
 
 
 class TravelClubApi{
-  URL = 'http://127.0.0.1:9003/clubs';
+  // URL = 'http://127.0.0.1:9003/clubs';
+  URL = process.env.REACT_APP_API_URL + '/clubs';
 
   findClubsByName(clubName :string, descending :boolean){
     if(!clubName) clubName = '';
@@ -20,6 +22,14 @@ class TravelClubApi{
 
     return axios.get<TravelClubModel>(this.URL  + `/${clubId}`)
       .then(response => response && response.data);
+  }
+
+  registerClub(travelClubCdo :TravelClubCdoModel){
+    if(!travelClubCdo) return null;
+    console.log("LOG - API INVOED   ")
+
+    return axios.post<TravelClubModel>(this.URL ,travelClubCdo)
+        .then(response => response && response.data);
   }
   
 }

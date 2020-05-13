@@ -29,6 +29,12 @@ export class TravelClubService{
     runInAction(()=> this.travelClub = club);
   }
 
+
+  @action
+  async registerClub(){
+    await travelClubApi.registerClub(this.travelClubCdo);
+  }
+
   @action
   setTravelClub(travelClub : TravelClubModel){
     if(travelClub) this.travelClub = travelClub;
