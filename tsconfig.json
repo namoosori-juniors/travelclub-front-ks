@@ -7,7 +7,7 @@
     "allowJs": false,
     "jsx": "react",
     "sourceMap": true,
-    "outDir": "./dist/js/",
+    "outDir": "./dest/js/",
     "moduleResolution": "node",
     "declaration": false,
     "lib": [

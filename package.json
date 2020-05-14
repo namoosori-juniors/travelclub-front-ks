@@ -37,7 +37,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build && xcopy build webKs /e /k /h",
+    "builD": "webpack"
   },
   "eslintConfig": {
     "extends": "react-app"
