@@ -1,0 +1,52 @@
+language: node_js
+node_js:
+  - "stable"
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+  email:
+    recipients:
+      - mhjang@nextree.io
+
+before_deploy:
+  - npm run install
+  - npm run build
+  - zip -r travel-club-front-ks build/*
+  - mkdir -p deploy
+  - mv travel-club-front-ks.zip deploy/travel-club-front-ks.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: travel-club-bucket
+    region: ap-northeast-2
+    local_dir: deploy
+    acl: public_read
+    wait-until-deployed: true
+    on:
+      repo: namoosori-juniors/travelclub-front-ks
+      branch: master
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: travel-club-buket
+    key: travel-club-front-ks.zip
+    bundle_type: zip
+    application: travel-club-front
+    deployment_group: travel-club-front-group
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    wait-until-deployed: true
+    on:
+      repo: namoosori-juniors/travelclub-front-ks
+      branch: master
