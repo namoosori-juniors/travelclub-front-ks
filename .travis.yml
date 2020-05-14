@@ -16,7 +16,7 @@ notifications:
       - mhjang@nextree.io
 
 before_deploy:
-  - npm run install
+  - npm install
   - npm run build
   - zip -r travel-club-front-ks build/*
   - mkdir -p deploy
