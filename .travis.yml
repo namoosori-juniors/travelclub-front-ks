@@ -20,24 +20,10 @@ before_deploy:
   - npm run build
 
 deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: travel-club-bucket
-    region: ap-northeast-2
-    local_dir: build
-    acl: public_read
-    wait-until-deployed: true
-    on:
-      repo: namoosori-juniors/travelclub-front-ks
-      branch: master
-
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: travel-club-buket
-    key: travel-club-front-ks.zip
-    bundle_type: zip
+    local_dir: build
     application: travel-club-front
     deployment_group: travel-club-front-group
     region: ap-northeast-2
