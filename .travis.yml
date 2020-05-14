@@ -18,9 +18,6 @@ notifications:
 before_deploy:
   - npm install
   - npm run build
-  - zip -r travel-club-front-ks build/*
-  - mkdir -p deploy
-  - mv travel-club-front-ks.zip deploy/travel-club-front-ks.zip
 
 deploy:
   - provider: s3
@@ -28,7 +25,7 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY
     bucket: travel-club-bucket
     region: ap-northeast-2
-    local_dir: deploy
+    local_dir: build
     acl: public_read
     wait-until-deployed: true
     on:
