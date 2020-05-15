@@ -23,6 +23,8 @@ install:
   - cp Dockerfile dist/Dockerfile
   - cp deploy-travelclub.sh dist/deploy-travelclub.sh
   - cp nginx.conf dist/nginx.conf
+  - zip -r travel-club-front dist/*
+  - mv travel-club-front.zip dist/travel-club-front.zip
 
 deploy:
   - provider: s3
@@ -41,7 +43,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: travel-club-front
-    key: ks
+    key: ks/travel-club-front.zip
     bundle_type: zip
     application: travel-club-front
     deployment_group: travel-club-front-group
