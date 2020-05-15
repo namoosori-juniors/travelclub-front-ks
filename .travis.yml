@@ -21,9 +21,9 @@ before_deploy:
   - mkdir dist
   - mkdir dist/build
   - mv build dist/build
-  - copy Dockerfile dist/Dockerfile
-  - copy deploy-travelclub.sh dist/deploy-travelclub.sh
-  - copy nginx.conf dist/nginx.conf
+  - cp Dockerfile dist/Dockerfile
+  - cp deploy-travelclub.sh dist/deploy-travelclub.sh
+  - cp nginx.conf dist/nginx.conf
 
 deploy:
   - provider: s3
