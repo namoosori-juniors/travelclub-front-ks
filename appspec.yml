@@ -3,3 +3,7 @@ os: linux
 files:
   - source:  /
     destination: /home/ec2-user/app/travis/travel-club-front/ks/
+hooks:
+  AfterInstall:
+    - location: deploy-travelclub.sh
+      timeout: 120
