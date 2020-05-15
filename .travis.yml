@@ -20,7 +20,7 @@ before_deploy:
   - npm run build
   - mkdir dist
   - mkdir dist/build
-  - mv -r build dist/build
+  - mv build dist/build
   - copy Dockerfile dist/Dockerfile
   - copy deploy-travelclub.sh dist/deploy-travelclub.sh
   - copy nginx.conf dist/nginx.conf
