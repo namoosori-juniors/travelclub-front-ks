@@ -15,7 +15,7 @@ notifications:
     recipients:
       - mhjang@nextree.io
 
-before_deploy:
+install:
   - npm install
   - npm run build
   - mkdir dist
