@@ -19,5 +19,5 @@ cd "$REPOSITORY"
 
 docker build -t "$APP_NAME" .
 docker container prune -f
-docker run -p 80:8080 --name "$APP_NAME" --network "$NETWORK" "$APP_NAME"
+docker run -d -p 80:8080 --name "$APP_NAME" --network "$NETWORK" "$APP_NAME"
 
