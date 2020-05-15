@@ -21,6 +21,7 @@ install:
   - mkdir dist
   - mv build dist
   - cp Dockerfile dist/Dockerfile
+  - cp appspec.yml dist/appspec.yml
   - cp deploy-travelclub.sh dist/deploy-travelclub.sh
   - cp nginx.conf dist/nginx.conf
   - zip -r travel-club-front dist/*
