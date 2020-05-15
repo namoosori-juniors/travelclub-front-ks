@@ -18,6 +18,7 @@ notifications:
 before_deploy:
   - npm install
   - npm run build
+  - rm -r dist
   - mkdir dist
   - mv build dist
   - cp Dockerfile dist/Dockerfile
