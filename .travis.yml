@@ -19,8 +19,7 @@ before_deploy:
   - npm install
   - npm run build
   - mkdir dist
-  - mkdir dist/build
-  - mv build dist/build
+  - mv build dist
   - cp Dockerfile dist/Dockerfile
   - cp deploy-travelclub.sh dist/deploy-travelclub.sh
   - cp nginx.conf dist/nginx.conf
@@ -34,6 +33,22 @@ deploy:
     upload-dir: ks
     region: ap-northeast-2
     skip_cleanup: true
+    on:
+      repo: namoosori-juniors/travelclub-front-ks
+      branch: master
+
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: travel-club-front
+    key: ks/travel-club-front-ks.zip
+    bundle_type: zip
+    application: travel-club-front
+    deployment_group: travel-club-front-group
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    wait-until-deployed: true
     on:
       repo: namoosori-juniors/travelclub-front-ks
       branch: master

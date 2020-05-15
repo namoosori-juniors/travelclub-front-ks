@@ -5,7 +5,3 @@ files:
     destination: /home/ec2-user/app/travis/travel-club-front/ks/
   - source: /nginx.conf
 
-hooks:
-  AfterInstall:
-    - location: deploy-travelclub.sh
-      timeout: 300
