@@ -24,8 +24,8 @@ install:
   - cp appspec.yml dist/appspec.yml
   - cp deploy-travelclub.sh dist/deploy-travelclub.sh
   - cp nginx.conf dist/nginx.conf
-  - zip -r travel-club-front dist/*
-  - mv travel-club-front.zip dist/travel-club-front.zip
+  - cd dist
+  - zip -r travel-club-front *
 
 deploy:
   - provider: s3

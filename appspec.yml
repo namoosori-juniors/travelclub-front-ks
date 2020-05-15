@@ -3,5 +3,3 @@ os: linux
 files:
   - source:  /
     destination: /home/ec2-user/app/travis/travel-club-front/ks/
-  - source: /nginx.conf
-
