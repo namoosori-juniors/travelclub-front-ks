@@ -3,8 +3,6 @@ RUN mkdir /usr/app
 WORKDIR /usr/app
 ENV PATH /usr/app/node_modules/.bin:$PATH
 COPY . /usr/app
-RUN npm install
-RUN npm run build
 
 FROM nginx:1.13.9-alpine
 RUN rm -rf /etc/nginx/conf.d
