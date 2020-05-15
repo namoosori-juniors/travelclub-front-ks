@@ -41,7 +41,7 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: travel-club-front
-    key: ks/travel-club-front-ks.zip
+    key: ks
     bundle_type: zip
     application: travel-club-front
     deployment_group: travel-club-front-group
