@@ -6,7 +6,7 @@ COPY ./build /usr/app
 
 FROM nginx:1.13.9-alpine
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=node-container /usr/app/build /tmp/app
+COPY --from=node-container /usr/app /tmp/app
 
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
