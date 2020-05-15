@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REPOSITORY=/home/ec2-user/app/travis/travel-club-front
+REPOSITORY=/home/ec2-user/app/travis/travel-club-front/ks
 APP_NAME="travel-club-front"
 
 CURRENT_APP_PID=$(docker ps -aqf "name=$APP_NAME")
