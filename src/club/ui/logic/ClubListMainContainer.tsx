@@ -10,13 +10,7 @@ import ClubRegisterModalContainer from "./ClubRegisterModalContainer";
 
 interface Props extends RouteComponentProps{
     travelClubService:TravelClubService
-    // clubs:TravelClubModel[]
 }
-
-// interface State {
-//     keyword:string;
-// }
-
 
 @inject('travelClubService')
 @observer
@@ -25,26 +19,21 @@ class ClubListMainContainer extends React.Component<Props>{
 
     constructor(props:Props) {
         super(props);
-        // this.state = {keyword:''};
+    }
+
+    componentDidMount() {
         this.props.travelClubService.findClubsByName('',true);
     }
 
-    onSearchBarTyped(keywordInput:string){
-        console.log("on Search")
+
+    onSearchBarTyped(keywordInput:string):void{
         this.props.travelClubService.findClubsByName(keywordInput,true);
     }
 
-    onRowClicked(clubId:string){
-        console.log("onRow")
+    onRowClicked(clubId:string):void{
         const{travelClubService, history} =this.props;
-        travelClubService.findClubById(clubId);
-        history.push('/clubs/detail')
+        travelClubService.findClubById(clubId).then(value =>history.push('/clubs/detail') );
     }
-
-    registerClub(){
-
-    }
-
 
     render() {
         const {clubs} = this.props.travelClubService;

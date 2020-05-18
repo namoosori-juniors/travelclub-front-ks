@@ -5,7 +5,7 @@ import {Table} from "semantic-ui-react";
 
 interface Props {
     club:TravelClubModel;
-    onRowClicked:Function;
+    onRowClicked:(clubId:string) => void;
 }
 
 class ClubListTableRowView extends React.Component<Props>{

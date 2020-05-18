@@ -1,11 +1,7 @@
 import React from 'react';
 import {Table} from "semantic-ui-react";
 
-interface Props {
-
-}
-
-class ClubListTableHeaderView extends React.Component<Props>{
+class ClubListTableHeaderView extends React.Component{
     render() {
         return (
             <Table.Header>

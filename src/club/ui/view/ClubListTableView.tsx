@@ -5,32 +5,26 @@ import ClubListTableHeaderView from "./ClubListTableHeaderView";
 import ClubListTableRowView from "./ClubListTableRowView";
 
 interface Props{
-    // keyword:string
     clubs:TravelClubModel[]
-    onRowClicked:Function;
+    onRowClicked:(clubId:string) => void;
 }
 
 class ClubListTableView extends React.Component<Props> {
 
     render(){
-        const rowList = [];
-        for(const clubEl of this.props.clubs){
-            rowList.push(
-                <ClubListTableRowView club={clubEl} onRowClicked={this.props.onRowClicked}/>
-                )
-        }
+        const {clubs, onRowClicked} = this.props;
         return (
             <Table celled inverted selectable>
                 <ClubListTableHeaderView/>
                 <Table.Body>
-                    {rowList}
+                    {
+                        clubs.length &&
+                            clubs.map(club =><ClubListTableRowView club={club} onRowClicked={onRowClicked}/> )
+                    }
                 </Table.Body>
             </Table>
         );
-
   }
-
-
 }
 
 export default ClubListTableView;

@@ -1,7 +1,5 @@
 import ClubMembership from "./ClubMembership";
-import autobind from 'autobind-decorator';
 
-@autobind
 export default class TravelClubModel{
   usid : string = '';
   name : string = '';
@@ -9,7 +7,7 @@ export default class TravelClubModel{
   foundationTime : number = 0;
   boardId : string = '';
 
-  membershipList : Array<ClubMembership>=[];
+  membershipList : ClubMembership[]=[];
 
   constructor(travelClub:TravelClubModel|null){
     if(travelClub){

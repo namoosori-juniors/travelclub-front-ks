@@ -7,12 +7,12 @@ class TravelClubApi{
   // URL = 'http://127.0.0.1:9003/clubs';
   URL = process.env.REACT_APP_API_URL + '/clubs';
 
-  findClubsByName(clubName :string, descending :boolean){
-    if(!clubName) clubName = '';
-    if(descending == null) descending = true;
-    console.log("LOG - API INVOED   " + this.URL + `?clubName=${clubName}&descending=${descending}`)
+  findClubsByName(name :string, foundationTimeDescending :boolean){
+    if(!name) name = '';
+    if(foundationTimeDescending == null) foundationTimeDescending = true;
+    console.log("LOG - API INVOED   " + this.URL + `?name=${name}&foundationTimeDescending=${foundationTimeDescending}`)
 
-    return axios.get<TravelClubModel[]>(this.URL + `?clubName=${clubName}&descending=${descending}`)
+    return axios.get<TravelClubModel[]>(this.URL + `?name=${name}&foundationTimeDescending=${foundationTimeDescending}`)
       .then(response => response && response.data);
   }
 

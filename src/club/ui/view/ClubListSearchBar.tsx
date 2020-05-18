@@ -2,8 +2,7 @@ import React from "react";
 import {Input} from 'semantic-ui-react';
 
 interface Props {
-    // keyword:string;
-    onSearchBarTyped:Function;
+    onSearchBarTyped:(keyword:string) =>void;
 }
 
 class ClubListSearchBar extends React.Component<Props>{

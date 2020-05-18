@@ -7,7 +7,6 @@ import TravelClubModel from "../../model/TravelClubModel";
 
 interface Props {
   travelClubService : TravelClubService
-  linkTo:Function;
 }
 
 @inject('travelClubService')
