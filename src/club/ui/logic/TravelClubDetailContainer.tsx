@@ -6,8 +6,9 @@ import {TravelClubService} from '../../present/logic/travelClubService';
 import ClubDetailView from "../view/ClubDetailView";
 import TravelClubModel from "../../model/TravelClubModel";
 
-interface Props extends RouteComponentProps{
+interface Props {
   travelClubService : TravelClubService
+  linkTo:Function;
 }
 
 @inject('travelClubService')
@@ -38,8 +39,9 @@ class TravelClubDetailContainer extends React.Component<Props> {
 
   removeTravelClub(){
     this.props.travelClubService.removeClub();
-    this.props.history.push('/');
+    // this.props.history.push('/');
   }
+
 
   render(){
 

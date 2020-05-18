@@ -32,6 +32,9 @@ export class TravelClubService{
 
   @action
   async registerClub(){
+
+    console.log('register club')
+    console.log(this.travelClubCdo)
     await travelClubApi.registerClub(this.travelClubCdo);
   }
 
