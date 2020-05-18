@@ -2,6 +2,7 @@ import ClubMembership from "./ClubMembership";
 
 export default class TravelClubModel{
   usid : string = '';
+  id:string = '';
   name : string = '';
   intro : string = '';
   foundationTime : number = 0;

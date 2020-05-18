@@ -41,7 +41,7 @@ export class TravelClubService{
   @action
   async modifyClub(){
     const keyValueList = [];
-    const clubId = this.travelClub?this.travelClub.usid:'';
+    const clubId = this.travelClub?this.travelClub.id:'';
 
     if(this.travelClub){
       keyValueList.push({name:'name',value:this.travelClub.name}) ;
