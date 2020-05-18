@@ -3,7 +3,6 @@ import React from "react";
 import {inject, observer} from "mobx-react";
 import autobind from "autobind-decorator";
 import {TravelClubService} from "../../present/logic/travelClubService";
-import {Link} from "react-router-dom";
 
 interface Props {
     travelClubService:TravelClubService
@@ -73,6 +72,7 @@ class ClubRegisterModalContainer extends React.Component<Props,State>{
                                     travelClubService.registerClub();
                                     travelClubService.findClubsByName('',true);
                                     this.setState({open:false})
+
                                 }
                             }}>
                                 <Icon name="checkmark" /> 등록하기

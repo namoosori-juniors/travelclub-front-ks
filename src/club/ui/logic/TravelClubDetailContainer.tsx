@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {inject, observer} from 'mobx-react';
 import autobind from 'autobind-decorator';
-import {RouteComponentProps} from 'react-router';
 import {TravelClubService} from '../../present/logic/travelClubService';
 import ClubDetailView from "../view/ClubDetailView";
 import TravelClubModel from "../../model/TravelClubModel";

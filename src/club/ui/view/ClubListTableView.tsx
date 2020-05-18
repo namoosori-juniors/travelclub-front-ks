@@ -11,9 +11,7 @@ interface Props{
 }
 
 class ClubListTableView extends React.Component<Props> {
-    constructor(props:Props) {
-        super(props);
-    }
+
     render(){
         const rowList = [];
         for(const clubEl of this.props.clubs){
