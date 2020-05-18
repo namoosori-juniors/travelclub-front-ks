@@ -17,10 +17,6 @@ interface Props extends RouteComponentProps{
 @autobind
 class ClubListMainContainer extends React.Component<Props>{
 
-    constructor(props:Props) {
-        super(props);
-    }
-
     componentDidMount() {
         this.props.travelClubService.findClubsByName('',true);
     }
