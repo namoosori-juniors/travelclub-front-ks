@@ -4,8 +4,9 @@ import autobind from 'autobind-decorator';
 import {TravelClubService} from '../../present/logic/travelClubService';
 import ClubDetailView from "../view/ClubDetailView";
 import TravelClubModel from "../../model/TravelClubModel";
+import {RouteComponentProps} from "react-router";
 
-interface Props {
+interface Props extends RouteComponentProps{
   travelClubService : TravelClubService
 }
 
@@ -36,14 +37,18 @@ class TravelClubDetailContainer extends React.Component<Props> {
   }
 
   removeTravelClub(){
-    this.props.travelClubService.removeClub();
-    // this.props.history.push('/');
+    this.props.travelClubService.removeClub().then(value => {
+      this.props.travelClubService.findClubsByName('',true)
+          .then(value1 => this.props.history.push('/'))
+
+    } );
+
   }
 
 
   render(){
 
-    const travelClub = this.props.travelClubService.travelClub;
+    const {travelClub} = this.props.travelClubService;
     console.log("In detail")
     console.log(travelClub)
     return(

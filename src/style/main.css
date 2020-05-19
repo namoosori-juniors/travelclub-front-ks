@@ -47,3 +47,10 @@
     margin-top: 10px;
 }
 
+.border-red{
+    border-color: red;
+}
+
+.font-red{
+    color:red;
+}
