@@ -50,11 +50,11 @@ class ClubDetailView extends React.Component<Props, State> {
                     <Table.Cell  width='6'>
                         <small>클럽이름</small>
                         {
-                            modNameFlag &&
+                            (modNameFlag &&
                                 <Icon name='check circle outline' color='green' onClick={()=> {
                                     this.setState({modNameFlag: false, modIntroFlag: modIntroFlag});
                                     modifyTravelClub();
-                                }}/> ||
+                                }}/> )||
                                 <Icon name='setting' onClick={()=>this.setState(
                                 {
                                     modNameFlag: true,
@@ -63,12 +63,12 @@ class ClubDetailView extends React.Component<Props, State> {
                         }
                         <div className="height-50 text-center" >
                         {
-                            modNameFlag &&
+                            (modNameFlag &&
                             <Input value={modNameValue ? modNameValue: (club.name?club.name : 'none')}  onChange={(e)=> {
                                 console.log(e.currentTarget.value)
                                 updateTravelClub('name',e.currentTarget.value);
                                 this.setState({modNameValue:e.currentTarget.value})
-                            }}/> ||
+                            }}/> )||
                             <h3>{club.name ? club.name : 'none'}</h3>
                         }
                         </div>
@@ -87,11 +87,11 @@ class ClubDetailView extends React.Component<Props, State> {
                     <Table.Cell colSpan='3' width='16'>
                         <small>클럽소개</small>
                         {
-                            modIntroFlag &&
+                            (modIntroFlag &&
                             <Icon name='check circle outline' color='green' onClick={()=> {
                                 this.setState({modNameFlag: modNameFlag, modIntroFlag: false});
                                 modifyTravelClub();
-                            }}/> ||
+                            }}/>) ||
                             <Icon name='setting' onClick={()=>this.setState(
                                 {
                                     modNameFlag: modNameFlag,
@@ -100,12 +100,12 @@ class ClubDetailView extends React.Component<Props, State> {
                         }
                         <div className="height-50 text-center" >
                         {
-                            modIntroFlag &&
+                            (modIntroFlag &&
                             <Input value={modIntroValue ? modIntroValue: (club.intro?club.intro : 'none')}  onChange={(e)=> {
                                 console.log(e.currentTarget.value)
                                 updateTravelClub('intro',e.currentTarget.value);
                                 this.setState({modIntroValue:e.currentTarget.value})
-                            }}/> ||
+                            }}/>) ||
                             <h3>{club.intro ? club.intro : 'none'}</h3>
                         }
                         </div>

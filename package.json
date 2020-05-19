@@ -41,7 +41,7 @@
     "builD": "webpack"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "airbnb"
   },
   "browserslist": {
     "production": [
