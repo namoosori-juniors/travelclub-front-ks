@@ -14,7 +14,7 @@ class ClubListTableView extends React.Component<Props> {
     render(){
         const {clubs, onRowClicked} = this.props;
         return (
-            <Table celled inverted selectable>
+            <Table celled selectable>
                 <ClubListTableHeaderView/>
                 <Table.Body>
                     {
